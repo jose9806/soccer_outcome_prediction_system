@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "soccer-outcome-prediction-system"
+version = "0.1.0"
+description = "This is a project focused on doing data driving predictions about soccer outcomes. The project includes web scraping, machine/deep learning and a reinforcement learning system to manage the betting strategies"
+authors = ["jose9806"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+selenium = "^4.28.1"
+pandas = "^2.2.3"
+pydantic = "^2.10.6"
+webdriver-manager = "^4.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
