@@ -519,12 +519,11 @@ if __name__ == "__main__":
     # )
 
     # Or resume an existing season with options
-    years = [2020, 2021, 2022, 2023, 2024, 2025]
-    for year in years:
-        orchestrator.resume_season(
-            year,
-            max_workers=4,
-            scrape_stats=True,
-            scrape_odds=True,
-            fast_odds=True,
-        )
+
+    orchestrator.resume_season(
+        2025,
+        max_workers=4,
+        scrape_stats=True,
+        scrape_odds=True,
+        fast_odds=True,
+    )
