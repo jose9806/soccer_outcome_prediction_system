@@ -10,7 +10,7 @@ from selenium.common.exceptions import (
     TimeoutException,
 )
 
-from src.config.logger import Logger
+from src.config.logging_config import get_logger
 from src.scraping.models.soccer_extraction import (
     MatchOdds,
     OddsType,
@@ -30,11 +30,12 @@ class OddsScraper(BaseScraper):
     def __init__(self, driver, config, **kwargs):
         super().__init__(driver, config)
 
-        self.logger = Logger(
+        self.logger = get_logger(
             name="OddsScraper",
             color="magenta",
             level=(self.config.LOG_LEVEL if hasattr(self.config, "LOG_LEVEL") else 20),
-            file_output="src/logs/odds_scraper.log",
+            enable_file=True,
+            file_path="src/logs/odds_scraper.log",
         )
         self.logger.info("OddsScraper initialized")
 

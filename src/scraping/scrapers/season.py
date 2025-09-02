@@ -13,7 +13,7 @@ from selenium.common.exceptions import (
     StaleElementReferenceException,
 )
 
-from src.config.logger import Logger
+from src.config.logging_config import get_logger
 from src.scraping.scrapers.base import BaseScraper
 from src.scraping.exceptions import ScrapingError
 from src.scraping.models.soccer_extraction import Season
@@ -26,17 +26,14 @@ class SeasonScraper(BaseScraper):
     def __init__(self, driver, config, **kwargs):
         super().__init__(driver, config)
         # Initialize the custom logger with appropriate configuration
-        self.logger = Logger(
+        self.logger = get_logger(
             name="SeasonScraper",
             color="cyan",
             level=(
                 self.config.LOG_LEVEL if hasattr(self.config, "LOG_LEVEL") else 20
             ),  # INFO=20
-            file_output=(
-                "src/logs/season_scraper.log"
-                if hasattr(self.config, "DATA_DIR")
-                else None
-            ),
+            enable_file=True,
+            file_path="src/logs/season_scraper.log",
         )
         self.logger.info("SeasonScraper initialized")
 

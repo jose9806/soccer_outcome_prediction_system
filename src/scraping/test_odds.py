@@ -19,7 +19,7 @@ sys.path.append(str(project_root))
 from src.config.scraping_config import ScrapingConfig
 from src.scraping.scrapers.odds import OddsScraper
 from src.scraping.driver import WebDriverFactory
-from src.config.logger import Logger
+from src.config.logging_config import get_logger
 from src.scraping.models.soccer_extraction import OddsType
 
 
@@ -35,7 +35,7 @@ def test_odds_scraper(match_url, fast_mode=False, market_limit=None):
     config = ScrapingConfig()
 
     # Initialize logger
-    logger = Logger(
+    logger = get_logger(
         name="TestOddsScraper",
         color="magenta",
         level=config.LOG_LEVEL,

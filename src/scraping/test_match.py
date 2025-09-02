@@ -16,7 +16,7 @@ sys.path.append(str(project_root))
 from src.config.scraping_config import ScrapingConfig
 from src.scraping.scrapers.match import MatchScraper
 from src.scraping.driver import WebDriverFactory
-from src.config.logger import Logger
+from src.config.logging_config import get_logger
 
 
 def test_match_scraper(match_url):
@@ -24,7 +24,7 @@ def test_match_scraper(match_url):
     config = ScrapingConfig()
 
     # Initialize logger
-    logger = Logger(
+    logger = get_logger(
         name="TestMatchScraper",
         color="green",
         level=config.LOG_LEVEL,

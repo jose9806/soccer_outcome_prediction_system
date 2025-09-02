@@ -3,7 +3,7 @@ from pathlib import Path
 import json
 from datetime import datetime
 
-from src.config.logger import Logger
+from src.config.logging_config import get_logger
 from src.scraping.exceptions import StorageError
 
 
@@ -12,10 +12,11 @@ class JsonStorage:
 
     def __init__(self, base_dir: Path):
         self.base_dir = Path(base_dir)
-        self.logger = Logger(
+        self.logger = get_logger(
             name="JsonStorage",
             color="yellow",
-            file_output="src/logs/json_storage.log",
+            enable_file=True,
+            file_path="src/logs/json_storage.log",
         )
         self._ensure_directory_exists()
 

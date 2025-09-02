@@ -12,7 +12,7 @@ from selenium.common.exceptions import (
     NoSuchElementException,
 )
 
-from src.config.logger import Logger
+from src.config.logging_config import get_logger
 from src.scraping.models.soccer_extraction import Match, MatchOdds
 from src.scraping.scrapers.base import BaseScraper
 from src.scraping.scrapers.stats import StatsScraper
@@ -25,11 +25,12 @@ class MatchScraper(BaseScraper):
     def __init__(self, driver, config, **kwargs):
         super().__init__(driver, config)
 
-        self.logger = Logger(
+        self.logger = get_logger(
             name="MatchScraper",
             color="green",
             level=(self.config.LOG_LEVEL if hasattr(self.config, "LOG_LEVEL") else 20),
-            file_output="src/logs/match_scraper.log",
+            enable_file=True,
+            file_path="src/logs/match_scraper.log",
         )
         self.logger.info("MatchScraper initialized")
 

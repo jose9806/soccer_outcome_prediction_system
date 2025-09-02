@@ -2,7 +2,7 @@ from typing import Optional, Dict, Any
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 
-from src.config.logger import Logger
+from src.config.logging_config import get_logger
 from src.scraping.scrapers.season import SeasonScraper
 from src.scraping.scrapers.match import MatchScraper
 from src.scraping.exceptions import ScrapingError, RateLimitError, StorageError
@@ -17,11 +17,12 @@ class ScrapingOrchestrator:
 
     def __init__(self, config: ScrapingConfig):
         self.config = config
-        self.logger = Logger(
+        self.logger = get_logger(
             name="ScrapingOrchestrator",
             color="blue",
             level=self.config.LOG_LEVEL,
-            file_output="src/logs/scraping_orchestrator.log",
+            enable_file=True,
+            file_path="src/logs/scraping_orchestrator.log",
         )
         self.storage = JsonStorage(config.DATA_DIR)
         self.logger.info("ScrapingOrchestrator initialized")

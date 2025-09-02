@@ -19,7 +19,7 @@ from selenium.webdriver.common.by import By
 from src.config.scraping_config import ScrapingConfig
 from src.scraping.scrapers.stats import StatsScraper
 from src.scraping.driver import WebDriverFactory
-from src.config.logger import Logger
+from src.config.logging_config import get_logger
 
 
 # Add these imports to the test script
@@ -32,7 +32,7 @@ def test_stats_scraper(match_url):
     config = ScrapingConfig()
 
     # Initialize logger
-    logger = Logger(
+    logger = get_logger(
         name="TestStatsScraper",
         color="blue",
         level=config.LOG_LEVEL,

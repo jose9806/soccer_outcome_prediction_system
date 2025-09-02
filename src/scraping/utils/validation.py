@@ -2,12 +2,13 @@ from typing import Optional, Any
 from datetime import datetime
 from pathlib import Path
 from src.scraping.models.soccer_extraction import Match, MatchStats
-from src.config.logger import Logger
+from src.config.logging_config import get_logger
 
-logger = Logger(
+logger = get_logger(
     "scraping_validations",
-    color="CYAN",
-    file_output="src/logs/scraping_validations.log",
+    color="cyan",
+    enable_file=True,
+    file_path="src/logs/scraping_validations.log",
 )
 
 

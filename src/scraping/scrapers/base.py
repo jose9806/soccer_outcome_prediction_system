@@ -3,7 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
-from src.config.logger import Logger
+from src.config.logging_config import get_logger
 
 
 class BaseScraper:
@@ -13,7 +13,7 @@ class BaseScraper:
         self.driver = driver
         self.config = config
         # Default logger will be overridden by child classes
-        self.logger = Logger(name="BaseScraper", color="white")
+        self.logger = get_logger(name="BaseScraper", color="white")
 
     def wait_for_element(self, selector, timeout=None):
         """

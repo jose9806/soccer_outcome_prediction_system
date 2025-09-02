@@ -11,7 +11,7 @@ from selenium.common.exceptions import (
     StaleElementReferenceException,
 )
 
-from src.config.logger import Logger
+from src.config.logging_config import get_logger
 from src.scraping.models.soccer_extraction import MatchStats
 from src.scraping.scrapers.base import BaseScraper
 
@@ -42,13 +42,14 @@ class StatsScraper(BaseScraper):
         # Only pass driver and config to BaseScraper
         super().__init__(driver, config)
         # Initialize the custom logger with appropriate configuration
-        self.logger = Logger(
+        self.logger = get_logger(
             name="StatsScraper",
             color="blue",  # Use blue for this scraper to distinguish logs
             level=(
                 self.config.LOG_LEVEL if hasattr(self.config, "LOG_LEVEL") else 20
             ),  # INFO=20
-            file_output="src/logs/stats_scraper.log",
+            enable_file=True,
+            file_path="src/logs/stats_scraper.log",
         )
         self.logger.info("StatsScraper initialized")
 
